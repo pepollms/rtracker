@@ -1,0 +1,23 @@
+# Dynamic directories and files
+
+barangays/**
+municipalities/**
+districts/**
+_reference/**
+_data/to_import/_sources/**
+_data/to_import/converted/**
+_doc/images/**
+_doc/*.pdf
+_site
+.sass-cache
+
+# Static directories and files
+
+vendor/**
+.sass-cache/
+.jekyll-cache/
+.bundle
+.jekyll-metadata
+Gemfile
+Gemfile.lock
+
