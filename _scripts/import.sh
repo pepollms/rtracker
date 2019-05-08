@@ -355,7 +355,8 @@ if [ ${op_import_source_data} -eq 1 ]; then
                 `" voters,"`
                 `" leader,"`
                 `" contact,"`
-                `" target) FROM '${file}' DELIMITER ',' CSV HEADER ENCODING 'UTF8';"
+                `" target)"`
+                `" FROM '${file}' DELIMITER ',' CSV HEADER ENCODING 'UTF8';"
             create_file ${sql_file} "${district_file_content}"
             echo_debug "Executing ${sql_file}."
             # Suppress messages
