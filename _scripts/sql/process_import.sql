@@ -60,7 +60,7 @@ select
             and vt_import.barangay = vt_barangay.name
             and vt_import.municipality = vt_municipality.name
             and vt_district.name like vt_import.district || '%') as bid,
-    0,
+    vt_import.voters,
     0,
     0,
     0,
