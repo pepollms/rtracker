@@ -1,28 +1,28 @@
-drop view if exists view_precincts_per_barangay;
-create or replace view view_precincts_per_barangay
+drop view if exists view_rt_precincts_per_barangay;
+create or replace view view_rt_precincts_per_barangay
     (district_id, district, municipality_id, municipality, barangay_id, barangay, precinct_count)
 as
     select
-        vt_district.id,
-        vt_district.name,
-        vt_municipality.id,
-        vt_municipality.name,
-        vt_barangay.id,
-        vt_barangay.name,
-        count(vt_precinct.id)
+        rt_district.id,
+        rt_district.name,
+        rt_municipality.id,
+        rt_municipality.name,
+        rt_barangay.id,
+        rt_barangay.name,
+        count(rt_precinct.id)
     from
-        vt_precinct
-        inner join vt_barangay on (vt_barangay.id = vt_precinct.barangay_id)
-        inner join vt_municipality on (vt_barangay.municipality_id = vt_municipality.id)
-        inner join vt_district on (vt_municipality.district_id = vt_district.id)
+        rt_precinct
+        inner join rt_barangay on (rt_barangay.id = rt_precinct.barangay_id)
+        inner join rt_municipality on (rt_barangay.municipality_id = rt_municipality.id)
+        inner join rt_district on (rt_municipality.district_id = rt_district.id)
     group by
-        vt_district.id,
-        vt_district.name,
-        vt_municipality.id,
-        vt_municipality.name,
-        vt_barangay.id,
-        vt_barangay.name
+        rt_district.id,
+        rt_district.name,
+        rt_municipality.id,
+        rt_municipality.name,
+        rt_barangay.id,
+        rt_barangay.name
     order by
-        vt_district.name,
-        vt_municipality.name,
-        vt_barangay.name;
+        rt_district.name,
+        rt_municipality.name,
+        rt_barangay.name;

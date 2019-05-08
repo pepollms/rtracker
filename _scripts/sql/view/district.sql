@@ -1,5 +1,5 @@
-drop view if exists view_district;
-create or replace view view_district
+drop view if exists view_rt_district;
+create or replace view view_rt_district
     (district_id,
         district,
         respondents_sum,
@@ -33,7 +33,7 @@ as
         sum(undecided_2_sum) as undecided_2_sum,
         get_percentage(sum(undecided_1_sum), sum(respondents_sum))
     from
-        view_precinct
+        view_rt_precinct
     group by
         district_id,
         district

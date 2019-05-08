@@ -7,11 +7,11 @@ CREATE OR REPLACE FUNCTION get_precinct_target(p_id integer)
 DECLARE
     retval integer := 0;
 BEGIN
-    retval := count(*) from vt_precinct where id = p_id;
+    retval := count(*) from rt_precinct where id = p_id;
     if retval = 0 then
         return 0;
     end if;
-    retval := target from vt_precinct_monitor where id = p_id;
+    retval := target from rt_precinct_monitor where id = p_id;
     return retval;
 end;
 $function$;

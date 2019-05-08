@@ -10,12 +10,12 @@ CREATE OR REPLACE FUNCTION set_leader_contact(p_leader_id integer,
 DECLARE
     retval integer := 0;
 BEGIN
-    retval := count(*) from vt_leader where id = p_leader_id;
+    retval := count(*) from rt_leader where id = p_leader_id;
     if retval = 0 then
         return -1;
     end if;
 
-    update vt_leader set contact = p_contact where id = p_leader_id;
+    update rt_leader set contact = p_contact where id = p_leader_id;
     return 1;
 end;
 $function$;

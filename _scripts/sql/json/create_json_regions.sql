@@ -6,7 +6,7 @@ from (
         name,
         abbreviation
     from
-        vt_region
+        rt_region
     order by
         name
     ) t;

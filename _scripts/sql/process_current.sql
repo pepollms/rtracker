@@ -1,4 +1,4 @@
-update vt_precinct_monitor
+update rt_precinct_monitor
 set respondents = s.respondents,
     nac = s.nac,
     rtt = s.rtt,
@@ -7,6 +7,6 @@ set respondents = s.respondents,
     ltm = s.ltm,
     undecided_2 = s.undecided_2
 from
-    view_import_current s
+    view_rt_import_current s
 where
-    vt_precinct_monitor.precinct_id = s.precinct_id;
+    rt_precinct_monitor.precinct_id = s.precinct_id;

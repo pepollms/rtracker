@@ -171,7 +171,7 @@ function leader_exists {
     column=${arg%=*}    # Remove suffix with =
     criteria=${arg#*=}  # Remove prefix with =
 
-    local -r SELECT="select count(*) from vt_leader where"
+    local -r SELECT="select count(*) from rt_leader where"
 
     local -r WHERE_ID_LIKE="trim(to_char(id, '999999')) like '${criteria}'"
     local -r WHERE_ID_IS="id = ${criteria}"
@@ -234,7 +234,7 @@ function contact_exists {
         echo "0"
         return -1
     fi
-    local -r SELECT="select count(*) from vt_leader where"
+    local -r SELECT="select count(*) from rt_leader where"
 
     local -r WHERE_CONTACT_LIKE="contact like '${criteria}'"
     local -r WHERE_CONTACT_IS="contact = '${criteria}'"
@@ -291,7 +291,7 @@ function get_existing_leader_id {
     column=${arg%=*}    # Remove suffix with =
     criteria=${arg#*=}  # Remove prefix with =
 
-    local -r SELECT="select * from vt_leader where"
+    local -r SELECT="select * from rt_leader where"
 
     local -r WHERE_ID_LIKE="trim(to_char(id, '999999')) like '${criteria}'"
     local -r WHERE_ID_IS="id = ${criteria}"
@@ -371,7 +371,7 @@ function display_leader_info {
     local -r criteria="$2"
     shift 2
 
-    local -r SELECT="select * from vt_leader where"
+    local -r SELECT="select * from rt_leader where"
 
     local -r WHERE_ID_LIKE="trim(to_char(id, '999999')) like '${criteria}'"
     local -r WHERE_ID_IS="id = ${criteria}"
@@ -771,7 +771,7 @@ function precinct_exists {
         return -1
     fi
 
-    local -r SELECT="select count(*) from vt_precinct where"
+    local -r SELECT="select count(*) from rt_precinct where"
 
     local -r WHERE_PRECINCT_LIKE="trim(to_char(id, '999999')) like '${criteria}'"
     local -r WHERE_PRECINCT_IS="id = ${criteria}"

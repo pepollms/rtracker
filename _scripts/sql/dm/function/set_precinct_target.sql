@@ -8,11 +8,11 @@ CREATE OR REPLACE FUNCTION set_precinct_target(p_id integer, p_count integer)
 DECLARE
     retval integer := 0;
 BEGIN
-    retval := count(*) from vt_precinct where id = p_id;
+    retval := count(*) from rt_precinct where id = p_id;
     if retval = 0 then
         return 0;
     end if;
-    update vt_precinct_monitor set target=p_count where id = p_id;
+    update rt_precinct_monitor set target=p_count where id = p_id;
     return 1;
 end;
 $function$;

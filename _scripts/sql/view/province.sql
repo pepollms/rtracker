@@ -1,5 +1,5 @@
-drop view if exists view_province;
-create or replace view view_province
+drop view if exists view_rt_province;
+create or replace view view_rt_province
     (respondents_sum,
         nac_sum,
         nac_percentage,
@@ -29,4 +29,4 @@ as
         sum(undecided_2_sum) as undecided_2_sum,
         get_percentage(sum(undecided_1_sum), sum(respondents_sum))
     from
-        view_precinct;
+        view_rt_precinct;

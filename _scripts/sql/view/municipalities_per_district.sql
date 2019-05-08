@@ -1,16 +1,16 @@
-drop view if exists view_municipalities_per_district;
-create or replace view view_municipalities_per_district
+drop view if exists view_rt_municipalities_per_district;
+create or replace view view_rt_municipalities_per_district
     (district_id, district, municipality_count)
 as
     select
-        vt_district.id,
-        vt_district.name,
-        count(vt_municipality.id)
+        rt_district.id,
+        rt_district.name,
+        count(rt_municipality.id)
     from
-        vt_municipality
-        inner join vt_district on (vt_municipality.district_id = vt_district.id)
+        rt_municipality
+        inner join rt_district on (rt_municipality.district_id = rt_district.id)
     group by
-        vt_district.id,
-        vt_district.name
+        rt_district.id,
+        rt_district.name
     order by
-        vt_district.name;
+        rt_district.name;

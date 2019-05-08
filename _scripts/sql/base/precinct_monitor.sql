@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS vt_precinct_monitor;
-CREATE TABLE vt_precinct_monitor
+DROP TABLE IF EXISTS rt_precinct_monitor;
+CREATE TABLE rt_precinct_monitor
 (
     id serial NOT NULL,
     precinct_id numeric(10,0) NOT NULL,
@@ -10,5 +10,5 @@ CREATE TABLE vt_precinct_monitor
     sfp numeric(10,0) NOT NULL DEFAULT 0,
     ltm numeric(10,0) NOT NULL DEFAULT 0,
     undecided_2 numeric(10,0) NOT NULL DEFAULT 0,
-    CONSTRAINT vt_precinct_monitor_pkey PRIMARY KEY (id)
+    CONSTRAINT rt_precinct_monitor_pkey PRIMARY KEY (id)
 );

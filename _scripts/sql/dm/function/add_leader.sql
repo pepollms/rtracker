@@ -11,17 +11,17 @@ CREATE OR REPLACE FUNCTION add_leader(p_name character varying(50),
 DECLARE
     retval integer := 0;
 BEGIN
-    retval := count(*) from vt_leader where name = p_name;
+    retval := count(*) from rt_leader where name = p_name;
     if retval = 1 then
         return -1;
     end if;
 
-    --retval := count(*) from vt_leader where contact = p_contact;
+    --retval := count(*) from rt_leader where contact = p_contact;
     --if retval = 1 then
     --    return -2;
     --end if;
 
-    insert into vt_leader(name, contact) values (p_name, p_contact);
-    return id from vt_leader where name = p_name;
+    insert into rt_leader(name, contact) values (p_name, p_contact);
+    return id from rt_leader where name = p_name;
 end;
 $function$;

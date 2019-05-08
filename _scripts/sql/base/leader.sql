@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS vt_leader;
-CREATE TABLE vt_leader
+DROP TABLE IF EXISTS rt_leader;
+CREATE TABLE rt_leader
 (
     id serial NOT NULL,
     name character varying(50) NOT NULL,
     contact character varying(50) NOT NULL,
-    CONSTRAINT vt_leader_pkey PRIMARY KEY (id)
+    CONSTRAINT rt_leader_pkey PRIMARY KEY (id)
 );

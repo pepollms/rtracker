@@ -112,7 +112,7 @@ function create_file {
 
 
 function create_district_markdown_files {
-    local -r SQL="select count(*) from vt_district;"
+    local -r SQL="select count(*) from rt_district;"
     local -r count=`psql -d postgres -w --tuples-only --no-align -c "${SQL}"`
     echo "  District markdown files: ${count}"
     # Use three-expression bash for loops syntax which share a common heritage
@@ -136,7 +136,7 @@ function create_district_markdown_files {
 }
 
 function create_municipality_markdown_files {
-    local -r SQL="select count(*) from vt_municipality;"
+    local -r SQL="select count(*) from rt_municipality;"
     local count=`psql -d postgres -w --tuples-only --no-align -c "${SQL}"`
     echo "  Municipality markdown files: ${count}"
     local -r start=1
@@ -155,7 +155,7 @@ function create_municipality_markdown_files {
 }
 
 function create_barangay_markdown_files {
-    local -r SQL="select count(*) from vt_barangay;"
+    local -r SQL="select count(*) from rt_barangay;"
     local count=`psql -d postgres -w --tuples-only --no-align -c "${SQL}"`
     echo "  Barangay markdown files: ${count}"
     local -r start=1
@@ -190,9 +190,9 @@ if [ "$1" == "${CMD_DEBUG}" ]; then
     shift
 fi
 
-mock_data_ccolumn="vt_precinct_monitor.target"
+mock_data_ccolumn="rt_precinct_monitor.target"
 mock_data_lb="1"
-mock_data_ub="vt_precinct_monitor.target::integer"
+mock_data_ub="rt_precinct_monitor.target::integer"
 init_do_json=1
 init_do_git=1
 while [ $# -gt 0 ] && [[ "${COMMANDS[@]}" =~ "${1}" ]]; do
@@ -345,7 +345,7 @@ if [ ${op_import_source_data} -eq 1 ]; then
             echo_debug "Creating ${sql_file}."
             sql_district_files+="${sql_file}"
             district_file_content=""`
-                `"\\COPY vt_import("`
+                `"\\COPY rt_import("`
                 `" province,"`
                 `" district,"`
                 `" municipality,"`
@@ -423,7 +423,7 @@ if [ ${op_import_current_data} -eq 1 ]; then
     IFS=$'\n' files=($(sort <<<"${files[*]}"))
     unset IFS
     if (( "${#files[@]}" )); then
-        psql -d postgres -w -c "delete from vt_import_current;"
+        psql -d postgres -w -c "delete from rt_import_current;"
         echo "Importing ${#files[@]} files:"
         echo "${files}"
         sql_current_files=()
@@ -433,7 +433,7 @@ if [ ${op_import_current_data} -eq 1 ]; then
             echo "Creating ${sql_file}."
             sql_current_files+="${sql_file}"
             current_file_content=""`
-                `"\\COPY vt_import_current("`
+                `"\\COPY rt_import_current("`
                 `" municipality_code,"`
                 `" precinct,"`
                 `" nac,"`
@@ -479,16 +479,16 @@ if [ ${op_generate_mock_data} -eq 1 ]; then
     fi
 
     content=""`
-    `"update vt_precinct_monitor\n"`
+    `"update rt_precinct_monitor\n"`
     `"set current = random_between(${mock_data_lb}, ${mock_data_ub})\n"`
     `"from\n"`
-    `"    vt_precinct\n"`
-    `"    inner join vt_barangay on\n"`
-    `"        (vt_barangay.id = vt_precinct.barangay_id)\n"`
-    `"    inner join vt_municipality on\n"`
-    `"        (vt_municipality.id = vt_barangay.municipality_id)\n"`
+    `"    rt_precinct\n"`
+    `"    inner join rt_barangay on\n"`
+    `"        (rt_barangay.id = rt_precinct.barangay_id)\n"`
+    `"    inner join rt_municipality on\n"`
+    `"        (rt_municipality.id = rt_barangay.municipality_id)\n"`
     `"where\n"`
-    `"    vt_precinct.id = vt_precinct_monitor.precinct_id;"
+    `"    rt_precinct.id = rt_precinct_monitor.precinct_id;"
 
     file="./sql/mock//mock_data.sql"
     create_file ${file} "${content}"

@@ -21,7 +21,7 @@ from (
         to_char(undecided_2_sum, 'FM999,999') as total_undecided_2,
         to_char(undecided_2_percentage, 'FM999') as percentage_undecided_2
     from
-        view_precinct
+        view_rt_precinct
     order by
         precinct
     ) t;

@@ -1,5 +1,5 @@
-drop view if exists view_precinct;
-create or replace view view_precinct
+drop view if exists view_rt_precinct;
+create or replace view view_rt_precinct
     (district_id,
         district,
         municipality_id,
@@ -26,39 +26,39 @@ create or replace view view_precinct
         undecided_2_percentage)
 as
     select
-        vt_district.id,
-        vt_district.name,
-        vt_municipality.id,
-        vt_municipality.name,
-        vt_barangay.id,
-        vt_barangay.name,
-        vt_precinct.id,
-        vt_precinct.name,
-        vt_leader.id,
-        vt_leader.name,
-        vt_leader.contact,
-        vt_precinct_monitor.respondents,
-        vt_precinct_monitor.nac,
-        get_percentage(vt_precinct_monitor.nac, vt_precinct_monitor.respondents),
-        vt_precinct_monitor.rtt,
-        get_percentage(vt_precinct_monitor.rtt, vt_precinct_monitor.respondents),
-        vt_precinct_monitor.undecided_1,
-        get_percentage(vt_precinct_monitor.undecided_1, vt_precinct_monitor.respondents),
-        vt_precinct_monitor.sfp,
-        get_percentage(vt_precinct_monitor.sfp, vt_precinct_monitor.respondents),
-        vt_precinct_monitor.ltm,
-        get_percentage(vt_precinct_monitor.ltm, vt_precinct_monitor.respondents),
-        vt_precinct_monitor.undecided_2,
-        get_percentage(vt_precinct_monitor.undecided_1, vt_precinct_monitor.respondents)
+        rt_district.id,
+        rt_district.name,
+        rt_municipality.id,
+        rt_municipality.name,
+        rt_barangay.id,
+        rt_barangay.name,
+        rt_precinct.id,
+        rt_precinct.name,
+        rt_leader.id,
+        rt_leader.name,
+        rt_leader.contact,
+        rt_precinct_monitor.respondents,
+        rt_precinct_monitor.nac,
+        get_percentage(rt_precinct_monitor.nac, rt_precinct_monitor.respondents),
+        rt_precinct_monitor.rtt,
+        get_percentage(rt_precinct_monitor.rtt, rt_precinct_monitor.respondents),
+        rt_precinct_monitor.undecided_1,
+        get_percentage(rt_precinct_monitor.undecided_1, rt_precinct_monitor.respondents),
+        rt_precinct_monitor.sfp,
+        get_percentage(rt_precinct_monitor.sfp, rt_precinct_monitor.respondents),
+        rt_precinct_monitor.ltm,
+        get_percentage(rt_precinct_monitor.ltm, rt_precinct_monitor.respondents),
+        rt_precinct_monitor.undecided_2,
+        get_percentage(rt_precinct_monitor.undecided_1, rt_precinct_monitor.respondents)
     from
-        vt_precinct
-        inner join vt_precinct_monitor
-            on (vt_precinct.id = vt_precinct_monitor.precinct_id)
-        inner join vt_leader_precinct_assignment as lpa
-            on (vt_precinct.id = lpa.precinct_id)
-        inner join vt_leader on (lpa.leader_id = vt_leader.id)
-        inner join vt_barangay on (vt_precinct.barangay_id = vt_barangay.id)
-        inner join vt_municipality
-            on (vt_barangay.municipality_id = vt_municipality.id)
-        inner join vt_district
-            on (vt_municipality.district_id = vt_district.id);
+        rt_precinct
+        inner join rt_precinct_monitor
+            on (rt_precinct.id = rt_precinct_monitor.precinct_id)
+        inner join rt_leader_precinct_assignment as lpa
+            on (rt_precinct.id = lpa.precinct_id)
+        inner join rt_leader on (lpa.leader_id = rt_leader.id)
+        inner join rt_barangay on (rt_precinct.barangay_id = rt_barangay.id)
+        inner join rt_municipality
+            on (rt_barangay.municipality_id = rt_municipality.id)
+        inner join rt_district
+            on (rt_municipality.district_id = rt_district.id);

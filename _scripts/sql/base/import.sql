@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS vt_import;
-CREATE TABLE vt_import
+DROP TABLE IF EXISTS rt_import;
+CREATE TABLE rt_import
 (
     id serial NOT NULL,
     province character varying(50) NOT NULL,
@@ -12,5 +12,5 @@ CREATE TABLE vt_import
     leader character varying(100) NOT NULL,
     contact character varying(50) NOT NULL,
     target numeric(10,0) NOT NULL DEFAULT 0,
-    CONSTRAINT vt_import_pkey PRIMARY KEY (id)
+    CONSTRAINT rt_import_pkey PRIMARY KEY (id)
 );

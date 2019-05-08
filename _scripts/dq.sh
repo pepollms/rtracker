@@ -79,8 +79,8 @@ function list_import_province {
         `" select distinct"`
         `"     province"`
         `" from"`
-        `"     vt_import;"
-# psql -d postgres -w -q -c '\t' -c '\pset pager off' -c '\pset footer off' -c "select distinct province from vt_import;"
+        `"     rt_import;"
+# psql -d postgres -w -q -c '\t' -c '\pset pager off' -c '\pset footer off' -c "select distinct province from rt_import;"
     echo "$(exec_sql "${SQL}")"
 }
 
@@ -90,14 +90,14 @@ function list_import_district {
         `" select"`
         `"     count(district)"`
         `" from"`
-        `"     (select distinct district from vt_import) as t;"
+        `"     (select distinct district from rt_import) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "List: district $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
         `" select distinct"`
         `"     district"`
         `" from"`
-        `"     vt_import"`
+        `"     rt_import"`
         `" order by"`
         `"     district;"
     echo "$(exec_sql "${SQL}")"
@@ -108,7 +108,7 @@ function list_import_municipality {
     local -r SQL_COUNT=""`
         `" select count(municipality)"`
         `" from"`
-        `"     (select distinct district, municipality from vt_import group by district, municipality) as t;"
+        `"     (select distinct district, municipality from rt_import group by district, municipality) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "List: municipality $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
@@ -117,7 +117,7 @@ function list_import_municipality {
         `"     district,"`
         `"     municipality"`
         `" from"`
-        `"     (select distinct district, municipality from vt_import group by district, municipality) as t"`
+        `"     (select distinct district, municipality from rt_import group by district, municipality) as t"`
         `" order by district, municipality;"
     echo "$(exec_sql "${SQL}")"
 }
@@ -127,7 +127,7 @@ function list_import_barangay {
     local -r SQL_COUNT=""`
         `" select count(barangay)"`
         `" from"`
-        `"     (select distinct district, municipality, barangay from vt_import group by district, municipality, barangay) as t;"
+        `"     (select distinct district, municipality, barangay from rt_import group by district, municipality, barangay) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "List: barangay $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
@@ -137,7 +137,7 @@ function list_import_barangay {
         `"     municipality,"`
         `"     barangay"`
         `" from"`
-        `"     vt_import"`
+        `"     rt_import"`
         `" order by"`
         `"     district,"`
         `"     municipality,"`
@@ -150,7 +150,7 @@ function list_import_precinct {
     local -r SQL_COUNT=""`
         `" select count(precinct)"`
         `" from"`
-        `"     (select distinct district, municipality, barangay, precinct from vt_import group by district, municipality, barangay, precinct) as t;"
+        `"     (select distinct district, municipality, barangay, precinct from rt_import group by district, municipality, barangay, precinct) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "List: precinct $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
@@ -161,7 +161,7 @@ function list_import_precinct {
         `"     barangay,"`
         `"     precinct"`
         `" from"`
-        `"     vt_import"`
+        `"     rt_import"`
         `" order by"`
         `"     district,"`
         `"     municipality,"`
@@ -175,13 +175,13 @@ function list_import_leader {
     local -r SQL_COUNT=""`
         `" select count(leader)"`
         `" from"`
-        `"     (select distinct leader from vt_import) as t;"
+        `"     (select distinct leader from rt_import) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "List: leader $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
         `" select leader"`
         `" from"`
-        `"     (select distinct leader from vt_import) as t"`
+        `"     (select distinct leader from rt_import) as t"`
         `" order by"`
         `"     leader"
     echo "$(exec_sql "${SQL}")"
@@ -195,7 +195,7 @@ function count_import_district {
         `" select"`
         `"     count(district)"`
         `" from"`
-        `"     (select distinct district from vt_import) as t;"
+        `"     (select distinct district from rt_import) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "Count: district $(echo ${result} | tr -d '[:space:]')"
 }
@@ -205,13 +205,13 @@ function count_import_municipality {
     local -r SQL_COUNT=""`
         `" select count(municipality)"`
         `" from"`
-        `"     (select distinct district, municipality from vt_import group by district, municipality) as t;"
+        `"     (select distinct district, municipality from rt_import group by district, municipality) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "Count: municipality $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
         `" select district, count(municipality)"`
         `" from"`
-        `"     (select distinct district, municipality from vt_import group by district, municipality) as t"`
+        `"     (select distinct district, municipality from rt_import group by district, municipality) as t"`
         `" group by district"`
         `" order by district;"
     echo "$(exec_sql "${SQL}")"
@@ -222,13 +222,13 @@ function count_import_barangay {
     local -r SQL_COUNT=""`
         `" select count(barangay)"`
         `" from"`
-        `"     (select distinct district, municipality, barangay from vt_import group by district, municipality, barangay) as t;"
+        `"     (select distinct district, municipality, barangay from rt_import group by district, municipality, barangay) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "Count: barangay $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
         `" select district, municipality, count(barangay)"`
         `" from"`
-        `"     (select distinct district, municipality, barangay from vt_import group by district, municipality, barangay) as t"`
+        `"     (select distinct district, municipality, barangay from rt_import group by district, municipality, barangay) as t"`
         `" group by district, municipality"`
         `" order by district, municipality;"
     echo "$(exec_sql "${SQL}")"
@@ -239,13 +239,13 @@ function count_import_precinct {
     local -r SQL_COUNT=""`
         `" select count(precinct)"`
         `" from"`
-        `"     (select distinct district, municipality, barangay, precinct from vt_import group by district, municipality, barangay, precinct) as t;"
+        `"     (select distinct district, municipality, barangay, precinct from rt_import group by district, municipality, barangay, precinct) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "Count: precinct $(echo ${result} | tr -d '[:space:]')"
     local -r SQL=""`
         `" select district, municipality, barangay, count(precinct)"`
         `" from"`
-        `"     (select distinct district, municipality, barangay, precinct from vt_import group by district, municipality, barangay, precinct) as t"`
+        `"     (select distinct district, municipality, barangay, precinct from rt_import group by district, municipality, barangay, precinct) as t"`
         `" group by district, municipality, barangay"`
         `" order by district, municipality, barangay;"
     echo "$(exec_sql "${SQL}")"
@@ -256,7 +256,7 @@ function count_import_leader {
     local -r SQL_COUNT=""`
         `" select count(leader)"`
         `" from"`
-        `"     (select distinct leader from vt_import) as t;"
+        `"     (select distinct leader from rt_import) as t;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "Count: leader $(echo ${result} | tr -d '[:space:]')"
 }
@@ -266,7 +266,7 @@ function voter_import_province {
     local -r SQL_COUNT=""`
         `" select sum(voters)"`
         `" from"`
-        `"     vt_import;"
+        `"     rt_import;"
     local -r result=$(exec_sql "${SQL_COUNT}")
     echo "Voters: province $(echo ${result} | tr -d '[:space:]')"
 }

@@ -12,23 +12,23 @@ CREATE OR REPLACE FUNCTION set_leader_assignment(p_leader_id integer,
 DECLARE
     retval integer := 0;
 BEGIN
-    retval := count(*) from vt_leader where id = p_leader_id;
+    retval := count(*) from rt_leader where id = p_leader_id;
     if retval = 0 then
         return -1;
     end if;
 
-    retval := count(*) from vt_precinct where id = p_precinct_id;
+    retval := count(*) from rt_precinct where id = p_precinct_id;
     if retval = 0 then
         return -2;
     end if;
 
-    retval := count(*) from vt_leader_precinct_assignment
+    retval := count(*) from rt_leader_precinct_assignment
         where leader_id = p_leader_id and precinct_id = p_precinct_id;
     if retval = 0 then
         return -3;
     end if;
 
-    insert into vt_leader_precinct_assignment(precinct_id, leader_id)
+    insert into rt_leader_precinct_assignment(precinct_id, leader_id)
         values(p_precinct_id, p_leader_id);
 
     return 1;

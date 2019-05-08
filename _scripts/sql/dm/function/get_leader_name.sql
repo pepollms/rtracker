@@ -8,10 +8,10 @@ CREATE OR REPLACE FUNCTION get_leader_name(p_leader_id integer)
 DECLARE
     retval integer := 0;
 BEGIN
-    retval := count(*) from vt_leader where id = p_leader_id;
+    retval := count(*) from rt_leader where id = p_leader_id;
     if retval = 0 then
         return '';
     end if;
-    return name from vt_leader where id = p_leader_id;
+    return name from rt_leader where id = p_leader_id;
 end;
 $function$;

@@ -1,5 +1,5 @@
-drop view if exists view_barangay;
-create or replace view view_barangay
+drop view if exists view_rt_barangay;
+create or replace view view_rt_barangay
     (district_id,
         district,
         municipality_id,
@@ -41,7 +41,7 @@ as
         sum(undecided_2_sum) as undecided_2_sum,
         get_percentage(sum(undecided_1_sum), sum(respondents_sum))
     from
-        view_precinct
+        view_rt_precinct
     group by
         district_id,
         district,
