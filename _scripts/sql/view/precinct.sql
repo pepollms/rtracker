@@ -45,9 +45,9 @@ as
         vt_precinct_monitor.undecided_1,
         get_percentage(vt_precinct_monitor.undecided_1, vt_precinct_monitor.respondents),
         vt_precinct_monitor.sfp,
-        get_percentage(vt_precinct_monitor.nac, vt_precinct_monitor.respondents),
+        get_percentage(vt_precinct_monitor.sfp, vt_precinct_monitor.respondents),
         vt_precinct_monitor.ltm,
-        get_percentage(vt_precinct_monitor.rtt, vt_precinct_monitor.respondents),
+        get_percentage(vt_precinct_monitor.ltm, vt_precinct_monitor.respondents),
         vt_precinct_monitor.undecided_2,
         get_percentage(vt_precinct_monitor.undecided_1, vt_precinct_monitor.respondents)
     from
