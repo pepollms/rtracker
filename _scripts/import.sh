@@ -304,13 +304,11 @@ if [ ${op_create_db} -eq 1 ]; then
         exit 1
     fi
     echo "Create database objects."
-    echo "----------"
     $(psql -X -q -v ON_ERROR_STOP=1 -d postgres -w -f ./sql/create_base_tables.sql)
     $(psql -X -q -v ON_ERROR_STOP=1 -d postgres -w -f ./sql/create_utility_functions.sql)
     $(psql -X -q -v ON_ERROR_STOP=1 -d postgres -w -f ./sql/create_monitor_views.sql)
     $(psql -X -q -v ON_ERROR_STOP=1 -d postgres -w -f ./sql/create_dm_functions.sql)
     echo "Database objects has been created."
-    echo "----------"
 fi
 
 if [ ${op_import_source_data} -eq 1 ]; then
@@ -366,14 +364,14 @@ if [ ${op_import_source_data} -eq 1 ]; then
             echo "Import done."
         done
 
-        echo "----------"
+        echo "Import data count."
         ./dq.sh count-import district
         ./dq.sh count-import municipality
         ./dq.sh count-import barangay
         #./dq.sh count-import precinct
         ./dq.sh count-import leader
         ./dq.sh voter-import
-        echo "----------"
+        echo "Import data count done."
 
 #        echo "Checking imported data."
 #        psql -d postgres -w -q -f ./sql/check_import.sql
@@ -402,7 +400,9 @@ if [ ${op_import_source_data} -eq 1 ]; then
             echo "Remote repository synchronized."
         fi
     else
-        echo "No import files found."
+        echo -e "\nError: No import files found.\n"
+        echo "Initialization aborted."
+        exit 1
     fi
 fi
 
@@ -467,7 +467,7 @@ if [ ${op_import_current_data} -eq 1 ]; then
             echo "Remote repository synchronized."
         fi
     else
-        echo "No import files found."
+        echo -e "\nError: No import files found.\n"
     fi
 fi
 
