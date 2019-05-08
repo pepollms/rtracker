@@ -405,11 +405,16 @@ div.height-summary {
     min-width: 100%;
 }
 
+.info-value-pv,
 .info-value-percent,
 .info-value-number {
     font-family: $font_sans;
     color: $value_color;
     background: $value_background;
+}
+
+.info-value-pv.bg-color-gray {
+    background: $label_background_3;
 }
 
 .info-value-percent.bg-color-green {
@@ -426,6 +431,11 @@ div.height-summary {
 
 .info-value-number.bg-color-gray {
     background: $label_background_3;
+}
+
+.info-value-pv {
+    width: $label_pv_length;
+    max-width: $label_pv_length;
 }
 
 .info-value-percent {
