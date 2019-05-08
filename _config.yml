@@ -56,6 +56,7 @@ exclude:
    - vendor/ruby/
    - _doc/
    - _scripts/
+   - _data/to_import/_sources/
 
 # Filtering Content
 strict_front_matter: true
