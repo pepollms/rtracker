@@ -438,10 +438,9 @@ if [ ${op_import_current_data} -eq 1 ]; then
                 `" precinct,"`
                 `" nac,"`
                 `" rtt,"`
-                `" undecided_1,"`
                 `" sfp,"`
-                `" ltm,"`
-                `" undecided_2) FROM '${file}' DELIMITER ',' CSV HEADER ENCODING 'UTF8';"
+                `" ltm)"`
+                `" FROM '${file}' DELIMITER ',' CSV HEADER ENCODING 'UTF8';"
             create_file ${sql_file} "${current_file_content}"
             echo "Executing ${sql_file}."
             psql -d postgres -w -f ${sql_file}
