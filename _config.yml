@@ -16,7 +16,7 @@
 title: RTracker
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Prospective vote count tracking.
+  Result vote count tracking.
 twitter_username: jekyllrb
 github_username:  jekyll
 favicon: faveicon.png
