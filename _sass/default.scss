@@ -478,6 +478,11 @@ div.progress {
     }
 }
 
+#summary_left_content {
+    min-width: $progress_bar_long_min_width;
+    max-width: $progress_bar_long_max_width;
+}
+
 #summary_title {
     margin: 0;
     min-width: $progress_bar_long_min_width;

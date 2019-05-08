@@ -8,20 +8,11 @@ layout: common
 
 {% assign district = site.data.districts | where: "district_id", page.district_id %}
 
-<div class="block flex-column flex-grow-1">
+<div id="summary_left_content" class="block flex-column flex-grow-1">
     <div class="spacer-h"></div>
     <div id="summary_title" class="info-label-full height-summary bg-label container rounded-top flex-grow-1">
         <div class="font-size-summary font-weight-bold text-uppercase text-left text-align-middle">{{ district[0].district }}</div>
     </div>
-    {% comment %}
-    <div class="fix-spacer-h2"></div>
-    <div id="summary_progress_bar" class="progress height-summary rounded-bottom-left rounded-bottom-right rounded-0">
-        <div class="progress-bar" role="progressbar" aria-valuenow="{{ district[0].current_percentage }}" valuemin="0" valuemax="100" style="width:{{ district[0].current_percentage }}%">
-            <span class="font-size-summary-percent font-weight-bold">{{ district[0].current_percentage }}%</span>
-        </div>
-    </div>
-    <div class="fix-spacer-h"></div>
-    {% endcomment %}
 </div>
 
 <div class="spacer-w2"></div>
