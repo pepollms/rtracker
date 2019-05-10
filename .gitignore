@@ -1,8 +1,8 @@
 # Dynamic directories and files
 
-barangays/**
-municipalities/**
-districts/**
+#barangays/**
+#municipalities/**
+#districts/**
 _reference/**
 _data/to_import/_sources/**
 _data/to_import/converted/**
