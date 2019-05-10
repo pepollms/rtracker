@@ -1,6 +1,5 @@
 update rt_precinct_monitor
-set respondents = s.respondents,
-    nac = s.nac,
+set nac = s.nac,
     rtt = s.rtt,
     undecided_1 = s.undecided_1,
     sfp = s.sfp,
