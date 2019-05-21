@@ -35,9 +35,9 @@ as
         sum(undecided_1_sum) as undecided_1_sum,
         get_percentage(sum(undecided_1_sum), sum(respondents_sum)),
         sum(sfp_sum) as sfp_sum,
-        get_percentage(sum(nac_sum), sum(respondents_sum)),
+        get_percentage(sum(sfp_sum), sum(respondents_sum)),
         sum(ltm_sum) as ltm_sum,
-        get_percentage(sum(rtt_sum), sum(respondents_sum)),
+        get_percentage(sum(ltm_sum), sum(respondents_sum)),
         sum(undecided_2_sum) as undecided_2_sum,
         get_percentage(sum(undecided_1_sum), sum(respondents_sum))
     from
